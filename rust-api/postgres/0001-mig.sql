@@ -1,0 +1,35 @@
+CREATE TABLE IF NOT EXISTS "user" (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    login TEXT UNIQUE NOT NULL,
+    created_on TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS auth (
+    user_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS project (
+    id SERIAL PRIMARY KEY,
+    author_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    description TEXT,
+    created_on TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS task (
+    id SERIAL PRIMARY KEY,
+    author_id INT NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    project_id INT REFERENCES project(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    deadline TIMESTAMPTZ,
+    created_on TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS session (
+    id TEXT PRIMARY KEY,
+    created_on TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    expires_on TIMESTAMPTZ NOT NULL
+);
