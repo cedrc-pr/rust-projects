@@ -1,0 +1,24 @@
+mod map;
+use chinchilib::rgb::RGBA8;
+pub use map::Map;
+mod coords2_d;
+pub use coords2_d::*;
+mod raycast;
+pub use raycast::*;
+mod gfx;
+pub use gfx::*;
+mod player;
+pub use player::*;
+mod font;
+pub use font::*;
+mod tween_service;
+pub use tween_service::*;
+
+pub const CELLING_COLOR: RGBA8 = RGBA8::new(40, 220, 240, 255);
+pub const FLOOR_COLOR: RGBA8 = RGBA8::new(60, 79, 79, 255);
+pub const FLOOR_TWEEN_COLOR: RGBA8 = RGBA8::new(100, 119, 119, 255);
+pub const WALL_LIGHT_COLOR: RGBA8 = RGBA8::new(100, 100, 100, 255);
+pub const WALL_LIGHT_TWEEN_COLOR: RGBA8 = RGBA8::new(50, 50, 50, 255);
+pub const WALL_DARK_COLOR: RGBA8 = RGBA8::new(70, 70, 70, 255);
+pub const WALL_DARK_TWEEN_COLOR: RGBA8 = RGBA8::new(20, 20, 20, 255);
+pub const BORDER_WIDTH: f32 = 1.0;
